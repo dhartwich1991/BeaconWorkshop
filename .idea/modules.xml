@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/BeaconWorkshop.iml" filepath="$PROJECT_DIR$/BeaconWorkshop.iml" />
+      <module fileurl="file://$PROJECT_DIR$/manualbluetoothlescanner/manualbluetoothlescanner.iml" filepath="$PROJECT_DIR$/manualbluetoothlescanner/manualbluetoothlescanner.iml" />
+      <module fileurl="file://$PROJECT_DIR$/nearbybeaconscan/nearbybeaconscan.iml" filepath="$PROJECT_DIR$/nearbybeaconscan/nearbybeaconscan.iml" />
+    </modules>
+  </component>
+</project>
