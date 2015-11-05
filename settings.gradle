@@ -1,1 +1,1 @@
-include ':manualbluetoothlescanner', ':nearbybeaconscan'
+include ':manualbluetoothlescanner'

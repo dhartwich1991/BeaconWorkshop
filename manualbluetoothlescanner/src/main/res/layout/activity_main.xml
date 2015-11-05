@@ -2,6 +2,7 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -24,5 +25,29 @@
         android:layout_height="wrap_content"
         android:id="@+id/distance_beacon"
         android:layout_below="@+id/textView"
+        android:layout_alignParentStart="true"
+        android:text="-" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Temperature of the beacon:"
+        android:id="@+id/textView2"
+        android:layout_below="@+id/distance_beacon"
         android:layout_alignParentStart="true" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-"
+        android:id="@+id/beacon_temperature"
+        android:layout_below="@+id/textView2"
+        android:layout_alignParentStart="true" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-"
+        android:id="@+id/temperature_trend"
+        android:layout_marginLeft="32dp"
+        android:layout_below="@+id/textView2"
+        android:layout_toEndOf="@+id/beacon_temperature" />
 </RelativeLayout>

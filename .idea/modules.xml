@@ -4,7 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/BeaconWorkshop.iml" filepath="$PROJECT_DIR$/BeaconWorkshop.iml" />
       <module fileurl="file://$PROJECT_DIR$/manualbluetoothlescanner/manualbluetoothlescanner.iml" filepath="$PROJECT_DIR$/manualbluetoothlescanner/manualbluetoothlescanner.iml" />
-      <module fileurl="file://$PROJECT_DIR$/nearbybeaconscan/nearbybeaconscan.iml" filepath="$PROJECT_DIR$/nearbybeaconscan/nearbybeaconscan.iml" />
     </modules>
   </component>
 </project>
