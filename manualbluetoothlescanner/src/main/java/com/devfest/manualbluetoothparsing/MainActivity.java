@@ -130,12 +130,12 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
     }
 
-        @Override
-        protected void onSaveInstanceState(Bundle outState) {
-            super.onSaveInstanceState(outState);
-            outState.putDouble("TEMP", lastMeasuredTemperature);
-            outState.putDouble("DIST", lastMeasuredDistance);
-        }
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putDouble("TEMP", lastMeasuredTemperature);
+        outState.putDouble("DIST", lastMeasuredDistance);
+    }
 
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
@@ -157,7 +157,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 temperatureBeacon.setText(String.format("%.2f°C", lastMeasuredTemperature));
             }
-            if(lastMeasuredDistance != 0){
+            if (lastMeasuredDistance != 0) {
                 distanceBeacon.setText(String.format("%.2f m", lastMeasuredDistance));
             }
         }
