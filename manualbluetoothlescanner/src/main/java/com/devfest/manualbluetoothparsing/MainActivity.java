@@ -26,6 +26,10 @@ public class MainActivity extends AppCompatActivity {
     private TextView temperatureTrend;
     private RelativeLayout mainLayout;
     private double lastMeasuredTemperature = 0.00;
+    private double lastMeasuredDistance = 0.00;
+    private BluetoothLeScanner bluetoothLeScanner;
+
+    private ScanCallback callback;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,9 +43,8 @@ public class MainActivity extends AppCompatActivity {
 
         BluetoothManager bluetoothManager = (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
         BluetoothAdapter bluetoothAdapter = bluetoothManager.getAdapter();
-        BluetoothLeScanner bluetoothLeScanner = bluetoothAdapter.getBluetoothLeScanner();
-
-        bluetoothLeScanner.startScan(new ScanCallback() {
+        bluetoothLeScanner = bluetoothAdapter.getBluetoothLeScanner();
+        callback = new ScanCallback() {
             @Override
             public void onScanResult(int callbackType, ScanResult result) {
                 super.onScanResult(callbackType, result);
@@ -83,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
                         Log.i("distance", String.format("%.2f m", distance));
 
                         distanceBeacon.setText(String.format("%.2f m", distance));
+                        lastMeasuredDistance = distance;
                     }
                 } else if (frameType == 0x20) {
                     //Get the temperature for my beacon
@@ -116,6 +120,46 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
             }
-        });
+        };
+        bluetoothLeScanner.startScan(callback);
+    }
+
+    @Override
+    protected void onDestroy() {
+        bluetoothLeScanner.stopScan(callback);
+        super.onDestroy();
+    }
+
+        @Override
+        protected void onSaveInstanceState(Bundle outState) {
+            super.onSaveInstanceState(outState);
+            outState.putDouble("TEMP", lastMeasuredTemperature);
+            outState.putDouble("DIST", lastMeasuredDistance);
+        }
+
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        if (savedInstanceState != null) {
+            lastMeasuredDistance = savedInstanceState.getDouble("DIST");
+            lastMeasuredTemperature = savedInstanceState.getDouble("TEMP");
+
+            if (lastMeasuredTemperature != 0) {
+                //Set the background color according to the temperature
+                if (lastMeasuredTemperature <= TEMPERATURE_THRESHOLD_COLD) {
+                    mainLayout.setBackgroundColor(
+                            ContextCompat.getColor(MainActivity.this, android.R.color.holo_blue_light));
+                } else if (lastMeasuredTemperature >= TEMPERATURE_THRESHOLD_HOT) {
+                    mainLayout.setBackgroundColor(
+                            ContextCompat.getColor(MainActivity.this, android.R.color.holo_red_light));
+                } else {
+                    mainLayout.setBackgroundColor(
+                            ContextCompat.getColor(MainActivity.this, android.R.color.holo_green_light));
+                }
+                temperatureBeacon.setText(String.format("%.2f°C", lastMeasuredTemperature));
+            }
+            if(lastMeasuredDistance != 0){
+                distanceBeacon.setText(String.format("%.2f m", lastMeasuredDistance));
+            }
+        }
     }
 }
