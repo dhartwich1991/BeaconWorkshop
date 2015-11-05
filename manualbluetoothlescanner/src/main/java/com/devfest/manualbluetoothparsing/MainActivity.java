@@ -19,6 +19,8 @@ import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final double TEMPERATURE_THRESHOLD_COLD = 18.5;
+    public static final double TEMPERATURE_THRESHOLD_HOT = 19.5;
     private TextView distanceBeacon;
     private TextView temperatureBeacon;
     private TextView temperatureTrend;
@@ -78,9 +80,9 @@ public class MainActivity extends AppCompatActivity {
                         // near (about 1-3m away from the beacon)
                         // far (further away or the signal is fluctuating too much to make a better calculation)
                         // unknown
-                        Log.i("distance", String.format("%.2fm", distance));
+                        Log.i("distance", String.format("%.2f m", distance));
 
-                        distanceBeacon.setText(String.format("%.2fm", distance));
+                        distanceBeacon.setText(String.format("%.2f m", distance));
                     }
                 } else if (frameType == 0x20) {
                     //Get the temperature for my beacon
@@ -101,10 +103,10 @@ public class MainActivity extends AppCompatActivity {
                         temperatureBeacon.setText(String.format("%.2f°C", temperature));
 
                         //Set the background color according to the temperature
-                        if (temperature <= 18.5) {
+                        if (temperature <= TEMPERATURE_THRESHOLD_COLD) {
                             mainLayout.setBackgroundColor(
                                     ContextCompat.getColor(MainActivity.this, android.R.color.holo_blue_light));
-                        } else if (temperature >= 19.5) {
+                        } else if (temperature >= TEMPERATURE_THRESHOLD_HOT) {
                             mainLayout.setBackgroundColor(
                                     ContextCompat.getColor(MainActivity.this, android.R.color.holo_red_light));
                         } else {
