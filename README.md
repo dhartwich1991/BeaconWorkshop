@@ -7,5 +7,4 @@ If you want to display of your data you have to change the check for the instanc
 
 `if ((namespace + instance).equals("NAMESPACE_OF_YOUR_BEACON" + "INSTANCE_OF_YOUR_BEACON")) `
 
-
-![Alt text](/screenshots/device-2015-11-05-163358.png "Screenshot1")
+<img src="/screenshots/device-2015-11-05-163358.png" height="700"> 
